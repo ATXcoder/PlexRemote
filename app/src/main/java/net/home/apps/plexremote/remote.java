@@ -1,6 +1,8 @@
 package net.home.apps.plexremote;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -130,7 +132,7 @@ public class remote extends Activity {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if(vol > 0 && vol < 100)
+                    if(vol < 100)
                     {
                         vol = vol + 5;
                     }
@@ -141,7 +143,7 @@ public class remote extends Activity {
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if(vol > 0 && vol < 100)
+                    if(vol > 0 )
                     {
                         vol = vol - 5;
                     }
@@ -156,14 +158,21 @@ public class remote extends Activity {
 
     private void api_prep(String api_method, String api_controller)
     {
+        Context ctx = getApplicationContext();
         // Get the prefs --later
-        String server = "192.168.1.10";
-        String port = "3005";
-        String client = "192.168.10.1";
+        //String server = "192.168.1.10";
+        //String port = "3005";
+        //String client = "192.168.10.1";
+        String server_ip = Settings.Read(ctx,"Key_Server_IP" );
+        String server_port = Settings.Read(ctx, "Key_Server_Port");
+
+        String client_ip = Settings.Read(ctx,"Key_Client_IP");
 
         //String api_url = "http://" + server +":" + port + "/system/players/" + client + "/" + api_controller + "/" + api_method;
-        String api_url = "http://" + server + ":" + port + "/player/" + api_controller + "/" + api_method;
+        String api_url = "http://" + server_ip + ":" + server_port + "/player/" + api_controller + "/" + api_method;
         Log.i("Plex Remote", api_url);
+
+        // Call the API
         new api(api_url);
 
     }
@@ -183,6 +192,8 @@ public class remote extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);

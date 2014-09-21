@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+        android:key="KEY_Server"
+        android:title="PLEX Server"
+        android:summary="Settings for the PLEX Server"
+        android:persistent="false">
+        <EditTextPreference
+            android:key="Key_Server_IP"
+            android:title="@string/server_ip"
+            android:persistent="true"/>
+        <EditTextPreference
+            android:key="Key_Server_Port"
+            android:title="@string/server_port"
+            android:inputType="number"
+            android:persistent="true"/>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="KEY_Client"
+        android:title="PLEX Client"
+        android:summary="Settings for the client that the remote will control"
+        android:persistent="false">
+        <EditTextPreference
+            android:key="Key_Client_IP"
+            android:title="@string/client_ip"
+            android:persistent="true"/>
+        <EditTextPreference
+            android:key="KEY_Client_Port"
+            android:title="@string/client_port"
+            android:persistent="true"/>
+        </PreferenceScreen>
+</PreferenceScreen>
