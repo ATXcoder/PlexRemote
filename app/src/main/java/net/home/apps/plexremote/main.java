@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 
 public class main extends Activity {
@@ -13,6 +14,13 @@ public class main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Get controls
+        // Eventually change this to present clients in a grid view
+        Spinner clients = (Spinner)findViewById(R.id.clients);
+
+        // Get clients from server
+
 
         //Temp - calls remote on start
         Intent i = new Intent(getApplicationContext(), remote.class);
@@ -34,6 +42,9 @@ public class main extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            // Call settings screen
+            Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);

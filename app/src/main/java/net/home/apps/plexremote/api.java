@@ -51,9 +51,9 @@ public class api {
                     throw new IOException(statusLine.getReasonPhrase());
                 }
             } catch (ClientProtocolException e) {
-                //TODO Handle problems..
+                Log.e("Plex Remote",  "Protocol Err: " + e.toString());
             } catch (IOException e) {
-                //TODO Handle problems..
+                Log.e("Plex Remote", "IO Err: " + e.toString());
             }
             return responseString;
         }

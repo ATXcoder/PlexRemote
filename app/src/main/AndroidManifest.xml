@@ -23,7 +23,6 @@
             android:name=".SettingsActivity"
             android:label="PLEX Remote Settings" >
         </activity>
-
-        <uses-permission android:name="android.permission.INTERNET"/>
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
